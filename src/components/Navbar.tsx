@@ -1,128 +1,128 @@
-import { ChevronDown, UserRound } from "lucide-react";
+import { ChevronDown, Menu, UserRound, X } from "lucide-react";
 import Logo from "../assets/logo2.svg";
 import Icon from "../assets/icon.webp";
 import FlagIcon from "../assets/flag-icon.svg";
+import { useState } from "react";
+
+const menuItems = [
+  { label: "Hotel", href: "/" },
+  { label: "Tiket Pesawat", href: "#" },
+  { label: "Tiket Kereta Api", href: "#" },
+  { label: "Tiket Bus & Travel", href: "#" },
+  { label: "Antar Jemput Bandara", href: "#" },
+  { label: "Rental Mobil", href: "#" },
+  { label: "Atraksi dan Aktivitas", href: "#" },
+];
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <nav className="bg-white dark:bg-gray-900 sticky top-0 z-50">
       {/* Nav 1 */}
-      <nav className="bg-white dark:bg-gray-900">
-        <div className="flex flex-wrap justify-between items-center gap-12 mx-auto max-w-screen-xl px-10 p-1">
-          <a
-            href="https://flowbite.com"
-            className="flex items-center space-x-3 rtl:space-x-reverse"
-          >
-            <img src={Logo} alt="Flowbite Logo" />
-          </a>
-          <nav className="flex items-center space-x-5 rtl:space-x-reverse">
-            <div className="flex text-black font-medium items-center gap-1 text-sm dark:text-white text-black">
+      <div className="flex flex-wrap justify-between items-center gap-12 mx-auto max-w-screen-xl px-10 p-1">
+        <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+          <img src={Logo} alt="Flowbite Logo" />
+        </a>
+        <button
+          className="lg:hidden text-gray-700 dark:text-white cursor-pointer focus:outline-none"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+        <div className="hidden lg:flex items-center gap-2 rtl:space-x-reverse">
+          <nav className="hidden lg:flex items-center rtl:space-x-reverse">
+            <div className="flex text-black font-medium items-center gap-1 text-sm dark:text-white text-black px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white cursor-pointer">
               <img src={FlagIcon} className="h-5 w-5 me-1" /> ID | IDR{" "}
               <ChevronDown size={14} />
             </div>
-            <div className="flex items-center gap-1 text-sm text-black font-medium dark:text-white">
+            <div className="flex items-center gap-1 text-sm text-black font-medium dark:text-white px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white cursor-pointer">
               <img src={Icon} className="h-6 w-6" /> Birthday Sale
             </div>
-            <div className="flex items-center gap-1 text-sm text-black font-medium dark:text-white">
+            <div className="flex items-center gap-1 text-sm text-black font-medium dark:text-white px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white cursor-pointer">
               Bantuan <ChevronDown size={14} />
             </div>
-            <div className="text-sm text-black font-medium dark:text-white hover:underline">
+            <div className="text-sm text-black font-medium dark:text-white px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white cursor-pointer">
               Jadi Mitra
             </div>
-            <div className="text-sm text-black font-medium dark:text-white hover:underline">
+            <div className="text-sm text-black font-medium dark:text-white px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white cursor-pointer">
               For Corporates
             </div>
-            <div className="text-sm text-black font-medium dark:text-white hover:underline">
+            <div className="text-sm text-black font-medium dark:text-white px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white cursor-pointer">
               Pesanan
             </div>
-            <div className="flex items-center space-x-1">
-              <button
-                type="button"
-                className="flex gap-1 items-center text-blue-500 hover:text-white border border-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-md text-sm px-2 py-2 text-centerdark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
-              >
-                <UserRound size={14} />
-                Log In
-              </button>
-
-              <button
-                type="button"
-                className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 rounded-md font-bold text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-              >
-                Daftar
-              </button>
-            </div>
           </nav>
-        </div>
-      </nav>
-      {/* Nav 2 */}
-      <nav className="bg-white dark:bg-gray-900 shadow-sm">
-        <div className="max-w-screen-xl px-7 py-4 mx-auto">
-          <div className="flex items-center">
-            <ul className="flex flex-row font-medium mt-0 space-x-2 rtl:space-x-reverse text-sm">
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 font-bold dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800  dark:hover:text-white px-3 py-2 rounded-md"
-                  aria-current="page"
-                >
-                  Hotel
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 font-bold dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800  dark:hover:text-white px-3 py-2 rounded-md"
-                >
-                  Tiket Pesawat
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 font-bold dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800  dark:hover:text-white px-3 py-2 rounded-md"
-                >
-                  Tiket Kereta Api
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 font-bold dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800  dark:hover:text-white px-3 py-2 rounded-md"
-                >
-                  Tiket Bus & Travel
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 font-bold dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800  dark:hover:text-white px-3 py-2 rounded-md"
-                >
-                  Antar Jemput Bandara
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 font-bold dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800  dark:hover:text-white px-3 py-2 rounded-md"
-                >
-                  Rental Mobil
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 font-bold dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800  dark:hover:text-white px-3 py-2 rounded-md"
-                >
-                  Atraksi dan Aktivitas
-                </a>
-              </li>
-              <li>
-                <div className="flex items-center gap-1 px-3 text-sm text-gray-600 font-bold dark:text-white  dark:hover:text-white">
-                  Produk Lainnya <ChevronDown size={14} />
-                </div>
-              </li>
-            </ul>
+          <div className="flex items-center space-x-1">
+            <button
+              type="button"
+              className="flex gap-1 items-center text-blue-500 border border-blue-500 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-md text-sm px-2.5 py-2 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 cursor-pointer"
+            >
+              <UserRound size={14} />
+              Log In
+            </button>
+
+            <button
+              type="button"
+              className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 rounded-md font-bold text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 cursor-pointer"
+            >
+              Daftar
+            </button>
           </div>
+        </div>
+
+        {isOpen && (
+          <div className="lg:hidden absolute top-full left-0 w-full bg-white dark:bg-gray-900 shadow-lg border-t border-gray-300 dark:border-gray-800">
+            <div className="flex flex-col p-4 space-y-3">
+              <div className="flex items-center gap-1 text-sm font-medium dark:text-white text-black">
+                <img src={FlagIcon} className="h-5 w-5 me-1" alt="Flag" />
+                ID | IDR <ChevronDown size={14} />
+              </div>
+              <div className="flex items-center gap-1 text-sm font-medium dark:text-white">
+                <img src={Icon} className="h-6 w-6" alt="Sale" />
+                Birthday Sale
+              </div>
+              {menuItems.map(({ label }) => (
+                <div
+                  key={label}
+                  className="text-sm font-medium dark:text-white px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
+                >
+                  {label}
+                </div>
+              ))}
+              <div className="flex flex-col space-y-2">
+                <button className="flex gap-1 items-center text-blue-500 border border-blue-500 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-blue-500 dark:hover:text-white">
+                  <UserRound size={14} />
+                  Log In
+                </button>
+                <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                  Daftar
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Nav 2 */}
+      <nav className="shadow-sm border-b border-gray-300 dark:border-gray-800">
+        <div className="max-w-screen-xl px-7 lg:py-1.5 mx-auto">
+          <ul className="hidden lg:flex flex-row items-center font-medium space-x-2 rtl:space-x-reverse text-sm">
+            {menuItems.map(({ label, href }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  className="text-gray-500 text-sm font-bold dark:text-white px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white leading-none"
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+            <li>
+              <div className="flex items-center rounded-md hover:bg-gray-100 gap-1 px-3 py-2 text-sm text-gray-500 font-bold dark:text-white dark:hover:text-white cursor-pointer">
+                Produk Lainnya <ChevronDown size={14} />
+              </div>
+            </li>
+          </ul>
         </div>
       </nav>
     </nav>
