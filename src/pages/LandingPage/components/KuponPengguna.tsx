@@ -35,7 +35,7 @@ export default function KuponPengguna() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto py-6">
+    <div className="max-w-[950px] mx-auto py-6">
       <h2 className="text-xl font-bold flex items-center gap-4 text-black">
         <span className="text-2xl">🎁</span> Kupon Pengguna Baru
       </h2>
@@ -56,21 +56,23 @@ export default function KuponPengguna() {
               <p className="text-xs text-gray-500 mb-6 space-x-2 ">
                 {coupon.snk}
               </p>
-              <div className="flex items-top justify-center space-x-2">
-                <span id="cpnCode" className="px-4 py-2 rounded-l">
+              <div className="flex items-top justify-between px-6 space-x-2 my-4">
+                <span
+                  id="cpnCode"
+                  className="p-2 rounded-l bg-gray-50 rounded-sm text-sm text-left w-full"
+                >
                   {coupon.code}
                 </span>
                 <span
                   id="cpnBtn"
-                  className="border border-white bg-white text-purple-600 px-4 py-2 rounded-r cursor-pointer"
+                  className="border border-white bg-blue-100 text-sm rounded-full text-blue-600 px-4 py-2 cursor-pointer"
                   onClick={() => handleCopy(coupon.code, coupon.id)}
                 >
-                  {copied === coupon.id ? "Copied!" : "Copy Code"}
+                  {copied === coupon.id ? "Copied!" : "Copy"}
                 </span>
               </div>
             </div>
 
-            {/* Styling untuk sisi kupon */}
             {(coupon.side === "left" || coupon.side === "right") && (
               <div className="w-12 h-6 bg-gray-200 rounded-t-full absolute top-1/2 transform -translate-y-1/2 left-0 -ml-3 rotate-90"></div>
             )}
