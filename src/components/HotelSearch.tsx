@@ -72,7 +72,6 @@ const HotelSearch = () => {
   };
 
   const handleSearch = () => {
-    console.log("Navigating to:", `/hotels?location=${searchParams.location}`);
     navigate(`/hotels?location=${searchParams.location}`);
     window.scrollTo({ top: 100, behavior: "smooth" });
   };
