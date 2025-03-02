@@ -4,6 +4,7 @@ import Icon from "../assets/icon.webp";
 import FlagIcon from "../assets/flag-icon.svg";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import LoginModal from "./ModalLogin";
 
 const menuItems = [
   { label: "Hotel", href: "/" },
@@ -18,6 +19,7 @@ const menuItems = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <nav
@@ -60,6 +62,7 @@ export default function Navbar() {
           </nav>
           <div className="flex items-center space-x-1">
             <button
+              onClick={() => setIsModalOpen(true)}
               type="button"
               className="flex gap-1 items-center text-blue-500 border border-blue-500 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-md text-sm px-2.5 py-2 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 cursor-pointer"
             >
@@ -68,6 +71,7 @@ export default function Navbar() {
             </button>
 
             <button
+              onClick={() => setIsModalOpen(true)}
               type="button"
               className="text-white bg-[#0194f3] focus:ring-4 focus:ring-blue-300 rounded-md font-bold text-sm px-4 py-2 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 cursor-pointer
               dark:bg-[#0194f3] dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:bg-[#0183f6]
@@ -98,11 +102,17 @@ export default function Navbar() {
                 </div>
               ))}
               <div className="flex flex-col space-y-2">
-                <button className="flex gap-1 items-center text-blue-500 border border-blue-500 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-blue-500 dark:hover:text-white">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="flex gap-1 items-center text-blue-500 border border-blue-500 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-blue-500 dark:hover:text-white"
+                >
                   <UserRound size={14} />
                   Log In
                 </button>
-                <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                >
                   Daftar
                 </button>
               </div>
@@ -133,6 +143,8 @@ export default function Navbar() {
           </ul>
         </div>
       </nav>
+
+      <LoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </nav>
   );
 }
