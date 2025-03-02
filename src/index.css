@@ -14,3 +14,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.react-datepicker__header {
+  background-color: white !important; /* Header putih */
+  border-bottom: 1px solid #ddd !important;
+}
+
+.react-datepicker {
+  border: none !important;
+}
