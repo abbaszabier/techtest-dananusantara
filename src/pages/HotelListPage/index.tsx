@@ -5,10 +5,12 @@ import { hotels } from "../../data/hotels";
 import HotelCard from "./components/HotelCard";
 import FilterBar from "./components/FilterBar";
 import { BadgePercent } from "lucide-react";
+import HotelCardGrid from "./components/HotelCardGrid";
 
 const HotelListPage = () => {
   const [searchParams] = useSearchParams();
   const location = searchParams.get("location");
+  const [view, setView] = useState<string>("list");
   const [filteredHotels, setFilteredHotels] = useState<typeof hotels>([]);
   const [priceRange, setPriceRange] = useState<number>(16000000);
   const [starFilter, setStarFilter] = useState<number[]>([]);
@@ -93,6 +95,8 @@ const HotelListPage = () => {
           setSortBy={setSortBy}
           setPriceView={setPriceView}
           priceView={priceView}
+          view={view}
+          setView={setView}
         />
         <div className="h-[64px] w-full bg-[#0076ff] rounded-xl mb-4 mt-1 gap-3 py-4 px-8 flex items-center justify-start">
           <BadgePercent size={20} color="#fff" />
@@ -103,9 +107,13 @@ const HotelListPage = () => {
         </div>
         <div className="grid grid-cols-1 gap-4 px-1">
           {filteredHotels.length > 0 ? (
-            filteredHotels.map((hotel) => (
-              <HotelCard key={hotel.id} hotel={hotel} />
-            ))
+            view === "list" ? (
+              filteredHotels.map((hotel) => (
+                <HotelCard key={hotel.id} hotel={hotel} />
+              ))
+            ) : (
+              <HotelCardGrid hotels={filteredHotels} />
+            )
           ) : (
             <p className="text-gray-500">Tidak ada hotel yang ditemukan.</p>
           )}
