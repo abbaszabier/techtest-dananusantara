@@ -5,6 +5,8 @@ import FlagIcon from "../assets/flag-icon.svg";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import LoginModal from "./ModalLogin";
+import { useSettingStore } from "../store";
+import Swal from "sweetalert2";
 
 const menuItems = [
   { label: "Hotel", href: "/" },
@@ -20,6 +22,19 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { email, name, setEmail, setName } = useSettingStore();
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const handleLogout = () => {
+    Swal.fire({
+      icon: "success",
+      title: "Logout Berhasil",
+      text: "Terima kasih telah menggunakan Traveloka!",
+    });
+    setEmail("");
+    setName("");
+    setIsModalOpen(false);
+  };
 
   return (
     <nav
@@ -61,24 +76,63 @@ export default function Navbar() {
             </div>
           </nav>
           <div className="flex items-center space-x-1">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              type="button"
-              className="flex gap-1 items-center text-blue-500 border border-blue-500 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-md text-sm px-2.5 py-2 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 cursor-pointer"
-            >
-              <UserRound size={14} />
-              Log In
-            </button>
+            {!email ? (
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="flex gap-1 items-center text-blue-500 border border-blue-500 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-blue-500 dark:hover:text-white"
+                >
+                  <UserRound size={14} />
+                  Log In
+                </button>
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                >
+                  Daftar
+                </button>
+              </div>
+            ) : (
+              <div className="relative">
+                <button
+                  onClick={() => setIsOpenModal(!isOpenModal)}
+                  className="text-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+                  type="button"
+                >
+                  {name} | 0 Poin
+                  <svg
+                    className="w-2.5 h-2.5 ms-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="m1 1 4 4 4-4"
+                    />
+                  </svg>
+                </button>
 
-            <button
-              onClick={() => setIsModalOpen(true)}
-              type="button"
-              className="text-white bg-[#0194f3] focus:ring-4 focus:ring-blue-300 rounded-md font-bold text-sm px-4 py-2 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 cursor-pointer
-              dark:bg-[#0194f3] dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:bg-[#0183f6]
-              "
-            >
-              Daftar
-            </button>
+                {isOpenModal && (
+                  <div className="absolute right-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                    <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+                      <li>
+                        <div
+                          onClick={() => handleLogout()}
+                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          Keluar
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
@@ -102,19 +156,63 @@ export default function Navbar() {
                 </div>
               ))}
               <div className="flex flex-col space-y-2">
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  className="flex gap-1 items-center text-blue-500 border border-blue-500 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-blue-500 dark:hover:text-white"
-                >
-                  <UserRound size={14} />
-                  Log In
-                </button>
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-                >
-                  Daftar
-                </button>
+                {!email ? (
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setIsModalOpen(true)}
+                      className="flex gap-1 items-center text-blue-500 border border-blue-500 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-blue-500 dark:hover:text-white"
+                    >
+                      <UserRound size={14} />
+                      Log In
+                    </button>
+                    <button
+                      onClick={() => setIsModalOpen(true)}
+                      className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                    >
+                      Daftar
+                    </button>
+                  </div>
+                ) : (
+                  <div className="relative">
+                    <button
+                      onClick={() => setIsOpenModal(!isOpenModal)}
+                      className="text-black font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+                      type="button"
+                    >
+                      {name}
+                      <svg
+                        className="w-2.5 h-2.5 ms-3"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 10 6"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="m1 1 4 4 4-4"
+                        />
+                      </svg>
+                    </button>
+
+                    {isOpenModal && (
+                      <div className="absolute right-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+                          <li>
+                            <div
+                              onClick={() => handleLogout()}
+                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                            >
+                              Keluar
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>
