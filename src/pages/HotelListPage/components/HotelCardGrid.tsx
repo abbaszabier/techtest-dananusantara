@@ -1,5 +1,5 @@
 import { Star, MapPin } from "lucide-react";
-
+import { useNavigate } from "react-router-dom";
 export interface HotelProps {
   id: number;
   slug: string;
@@ -18,12 +18,14 @@ export interface HotelProps {
 }
 
 export default function HotelCardGrid({ hotels }: { hotels: HotelProps[] }) {
+  const navigate = useNavigate();
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {hotels.map((hotel) => (
         <div
           key={hotel.id}
-          className="rounded-xl overflow-hidden shadow-lg border border-gray-100"
+          onClick={() => navigate(`/hotels/${hotel.slug}`)}
+          className="cursor-pointer rounded-xl overflow-hidden shadow-lg border border-gray-100"
         >
           <div className="relative">
             <img
@@ -77,7 +79,10 @@ export default function HotelCardGrid({ hotels }: { hotels: HotelProps[] }) {
             <p className="text-green-600 font-bold text-sm mt-2">25% OFF</p>
             <p className="text-orange-600 text-xl font-bold">{hotel.price}</p>
             <p className="text-xs text-gray-500">Termasuk pajak & biaya</p>
-            <button className="w-full bg-orange-500 text-white mt-4 py-2 rounded-md">
+            <button
+              onClick={() => navigate(`/hotels/${hotel.slug}`)}
+              className="w-full bg-orange-500 text-white mt-4 py-2 rounded-md cursor-pointer"
+            >
               Pilih
             </button>
           </div>
