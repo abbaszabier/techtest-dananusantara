@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { FaStar } from "react-icons/fa";
+import peta from "../../../assets/peta.png";
 
 interface FilterSidebarProps {
   priceRange: number;
@@ -21,7 +22,7 @@ const FilterSidebar = ({
     <div className="w-72 bg-gray-50 rounded-lg">
       <div className="rounded-xl flex flex-col items-center mb-4">
         <img
-          src="src/assets/peta.png"
+          src={peta}
           alt="filter"
           className="h-[125px] w-[250px] object-cover rounded-xl cursor-pointer"
         />
