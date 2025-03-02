@@ -13,6 +13,14 @@ export default function LoginModal({
   if (!isOpen) return null;
 
   const handleLogin = () => {
+    if (!email || !name) {
+      return Swal.fire({
+        icon: "error",
+        title: "Login Gagal",
+        text: "Nama dan email harus diisi!",
+      });
+    }
+
     Swal.fire({
       icon: "success",
       title: "Login Berhasil",
