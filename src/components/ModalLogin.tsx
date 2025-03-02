@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { X } from "lucide-react";
 import Swal from "sweetalert2";
+import { useSettingStore } from "../store";
 
 export default function LoginModal({
   isOpen,
@@ -9,8 +9,7 @@ export default function LoginModal({
   isOpen: boolean;
   onClose: () => void;
 }) {
-  const [email, setEmail] = useState("");
-
+  const { email, setEmail, name, setName } = useSettingStore();
   if (!isOpen) return null;
 
   const handleLogin = () => {
@@ -19,8 +18,9 @@ export default function LoginModal({
       title: "Login Berhasil",
       text: "Selamat datang di Traveloka!",
     });
+    setEmail(email);
+    setName(name);
     onClose();
-    setEmail("");
   };
 
   return (
@@ -30,6 +30,16 @@ export default function LoginModal({
           <X size={24} className="text-gray-500 cursor-pointer" />
         </button>
         <h2 className="text-xl font-semibold text-center mb-4">Login/Daftar</h2>
+        <div className="flex flex-col items-start gap-2">
+          <label className="text-xs font-medium">Nama</label>
+          <input
+            type="text"
+            placeholder="Masukkan nama-mu"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="mb-4 p-2 border border-gray-300 rounded-lg w-full"
+          />
+        </div>
         <div className="flex flex-col items-start gap-2">
           <label className="text-xs font-medium">Email/No. Handphone</label>
           <input
@@ -53,24 +63,24 @@ export default function LoginModal({
           </span>
           <hr className="flex-grow border-gray-300" />
         </div>
-        <button className="w-full bg-blue-200 p-3 rounded-full text-blue-700 flex items-center justify-center gap-2 mb-2">
+        <button className="w-full bg-blue-200 p-3 rounded-full text-blue-800 flex items-center justify-center gap-2 mb-2">
           Google
         </button>
-        <button className="w-full bg-blue-200 p-3 rounded-full text-black flex items-center justify-center gap-2 mb-2">
+        <button className="w-full bg-blue-200 p-3 rounded-full text-blue-800 flex items-center justify-center gap-2 mb-2">
           Apple
         </button>
-        <button className="w-full bg-blue-200 p-3 rounded-full text-blue-700 flex items-center justify-center gap-2">
+        <button className="w-full bg-blue-200 p-3 rounded-full text-blue-800 flex items-center justify-center gap-2">
           Facebook
         </button>
         <p className="text-xs text-gray-500 text-center mt-4">
-          Dengan melanjutkan, kamu menyetujui{" "}
+          Dengan melanjutkan, kamu menyetujui
           <a href="#" className="text-blue-500">
             Syarat & Ketentuan
-          </a>{" "}
-          ini dan kamu sudah diberitahu mengenai{" "}
+          </a>
+          ini dan kamu sudah diberitahu mengenai
           <a href="#" className="text-blue-500">
             Pemberitahuan Privasi
-          </a>{" "}
+          </a>
           kami.
         </p>
       </div>
