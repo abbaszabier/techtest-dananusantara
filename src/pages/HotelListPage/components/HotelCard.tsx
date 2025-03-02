@@ -21,6 +21,7 @@ export interface HotelProps {
 
 const HotelCard = ({ hotel }: { hotel: HotelProps }) => {
   const navigate = useNavigate();
+
   return (
     <div
       onClick={() => navigate(`/hotels/${hotel.slug}`)}
