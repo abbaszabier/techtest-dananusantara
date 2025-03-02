@@ -124,9 +124,6 @@ const HotelCard = ({ hotel }: { hotel: HotelProps }) => {
           <p className="text-[#ff5e1f] font-bold text-xl text-end">
             {hotel.price}
           </p>
-          <p className="text-red-500 text-xs text-end font-semibold">
-            Sisa 1 kamar di harga ini!
-          </p>
         </div>
         <button
           className="bg-orange-500 text-white px-3 py-2 text-sm rounded-md font-semibold cursor-pointer"
