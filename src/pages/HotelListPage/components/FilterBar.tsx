@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Grid, List } from "lucide-react";
 
 interface FilterBarProps {
@@ -8,6 +7,8 @@ interface FilterBarProps {
   sortBy?: string;
   setPriceView: (priceView: string) => void;
   priceView?: string;
+  setView?: (view: string) => void;
+  view?: string;
 }
 
 const FilterBar = ({
@@ -17,9 +18,9 @@ const FilterBar = ({
   sortBy,
   setPriceView,
   priceView,
+  setView,
+  view,
 }: FilterBarProps) => {
-  const [viewMode, setViewMode] = useState("list");
-
   return (
     <div className="sticky top-18 bg-gray-50 z-[40] my-1 w-full gap-2 py-1.5 flex items-center justify-between">
       <div className="flex flex-col items-left">
@@ -66,21 +67,21 @@ const FilterBar = ({
           <div className="flex items-center gap-2 bg-white border border-gray-100 px-3 py-2 rounded-full">
             <button
               className="cursor-pointer"
-              onClick={() => setViewMode("grid")}
+              onClick={() => setView && setView("grid")}
             >
               <Grid
                 className={`w-4 h-4`}
-                color={`${viewMode === "grid" ? "#0194f3" : "#bbb"}`}
+                color={`${view === "grid" ? "#0194f3" : "#bbb"}`}
               />
             </button>
             <div className="w-0.5 h-5 bg-gray-100"></div>
             <button
               className="cursor-pointer"
-              onClick={() => setViewMode("list")}
+              onClick={() => setView && setView("list")}
             >
               <List
                 className="w-4 h-4"
-                color={`${viewMode === "list" ? "#0194f3" : "#bbb"}`}
+                color={`${view === "list" ? "#0194f3" : "#bbb"}`}
               />
             </button>
           </div>
