@@ -1,6 +1,7 @@
 import { Coins, Hotel, MapPin } from "lucide-react";
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import logos from "../../../assets/logos.svg";
 
 export interface HotelProps {
   id: number;
@@ -52,11 +53,7 @@ const HotelCard = ({ hotel }: { hotel: HotelProps }) => {
             <h2 className="text-base font-bold">{hotel.name}</h2>
             <div className="flex flex-col items-left justify-start">
               <div className="flex items-center gap-1 text-[#0264c8] font-semibold text-xs">
-                <img
-                  src="src/assets/logos.svg"
-                  alt="star"
-                  className="w-4 h-4"
-                />
+                <img src={logos} alt="star" className="w-4 h-4" />
                 {hotel.rating}
                 <span className="text-gray-500">(1,5rb ulasan)</span>
               </div>
