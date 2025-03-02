@@ -3,6 +3,7 @@ import Logo from "../assets/logo2.svg";
 import Icon from "../assets/icon.webp";
 import FlagIcon from "../assets/flag-icon.svg";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const menuItems = [
   { label: "Hotel", href: "/" },
@@ -16,9 +17,14 @@ const menuItems = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   return (
-    <nav className="bg-white dark:bg-gray-900 sticky top-0 z-50">
+    <nav
+      className={`bg-white dark:bg-gray-900 ${
+        location.pathname === "/hotels" ? "" : "sticky"
+      } top-0 z-50`}
+    >
       {/* Nav 1 */}
       <div className="flex flex-wrap justify-between items-center gap-12 mx-auto max-w-screen-xl px-10 p-1">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -63,7 +69,9 @@ export default function Navbar() {
 
             <button
               type="button"
-              className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 rounded-md font-bold text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 cursor-pointer"
+              className="text-white bg-[#0194f3] focus:ring-4 focus:ring-blue-300 rounded-md font-bold text-sm px-4 py-2 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 cursor-pointer
+              dark:bg-[#0194f3] dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:bg-[#0183f6]
+              "
             >
               Daftar
             </button>
